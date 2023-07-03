@@ -1,16 +1,26 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
-  let post = "강남 우동 맛집";
-
+  let [title, setTitle] = useState([
+    "남자코트추천",
+    "강남우동맛집",
+    "파이썬독학",
+  ]);
   return (
     <div className="App">
       <div className="black-nav">
-        <h4>블로그임</h4>
+        <h4>reactBlog</h4>
       </div>
       <div className="list">
-        <h4>글제목</h4>
+        <h4>{title[0]}</h4>
+      </div>
+      <div className="list">
+        <h4>{title[1]}</h4>
+      </div>
+      <div className="list">
+        <h4>{title[2]}</h4>
       </div>
     </div>
   );

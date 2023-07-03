@@ -1,3 +1,4 @@
+/* eslint-disable */
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
@@ -8,13 +9,21 @@ function App() {
     "강남우동맛집",
     "파이썬독학",
   ]);
+  let [goodCount, setGoodCount] = useState(0);
+  function goodEvent() {
+    setGoodCount(goodCount + 1);
+  }
   return (
     <div className="App">
       <div className="black-nav">
         <h4>reactBlog</h4>
       </div>
       <div className="list">
-        <h4>{title[0]}</h4>
+        <h4>
+          {title[0]}
+          <span onClick={goodEvent}>👍</span>
+          {goodCount}
+        </h4>
       </div>
       <div className="list">
         <h4>{title[1]}</h4>

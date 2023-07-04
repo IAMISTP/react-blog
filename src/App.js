@@ -3,6 +3,16 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 
+function Modal() {
+  return (
+    <div className="modal">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
+}
+
 function App() {
   let [title, setTitle] = useState([
     "남자코트추천",
@@ -20,7 +30,6 @@ function App() {
   }
   function changeOrder() {
     let changeTitle = [...title];
-    setTitle(changeTitle.sort());
   }
   return (
     <div className="App">
@@ -42,6 +51,7 @@ function App() {
       <div className="list">
         <h4>{title[2]}</h4>
       </div>
+      <Modal></Modal>
     </div>
   );
 }

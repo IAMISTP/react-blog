@@ -19,11 +19,9 @@ function App() {
     "강남우동맛집",
     "파이썬독학",
   ]);
-  let [goodCount, setGoodCount] = useState(0);
+  let [goodCount, setGoodCount] = useState([0, 1, 2]);
   let [modal, setModal] = useState(false);
-  function goodEvent() {
-    setGoodCount(goodCount + 1);
-  }
+
   function changeTitle() {
     let copyTitle = [...title];
     copyTitle[0] = "여자코트추천";
@@ -31,6 +29,7 @@ function App() {
   }
   function changeOrder() {
     let changeTitle = [...title];
+    setTitle(changeTitle.sort());
   }
   return (
     <div className="App">
@@ -39,20 +38,26 @@ function App() {
       </div>
       <button onClick={changeOrder}>가나라다순으로 변경</button>
       <button onClick={changeTitle}>글제목 변경</button>
-      <div className="list">
-        <h4 onClick={() => setModal(!modal)}>
-          {title[0]}
-          <span onClick={goodEvent}>👍</span>
-          {goodCount}
-        </h4>
-      </div>
-      <div className="list">
-        <h4>{title[1]}</h4>
-      </div>
-      <div className="list">
-        <h4>{title[2]}</h4>
-      </div>
-      {modal == true ? <Modal /> : null}
+
+      {title.map((x, i) => {
+        return (
+          <div className="list" key={i}>
+            <h4 onClick={() => setModal(!modal)}>
+              {x}
+              <span
+                onClick={() => {
+                  let copy = [...goodCount];
+                  copy[i] = copy[i] + 1;
+                  setGoodCount(copy);
+                }}
+              >
+                👍
+              </span>
+              {goodCount[i]}
+            </h4>
+          </div>
+        );
+      })}
     </div>
   );
 }

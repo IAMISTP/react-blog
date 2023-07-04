@@ -20,6 +20,7 @@ function App() {
     "파이썬독학",
   ]);
   let [goodCount, setGoodCount] = useState(0);
+  let [modal, setModal] = useState(false);
   function goodEvent() {
     setGoodCount(goodCount + 1);
   }
@@ -39,7 +40,7 @@ function App() {
       <button onClick={changeOrder}>가나라다순으로 변경</button>
       <button onClick={changeTitle}>글제목 변경</button>
       <div className="list">
-        <h4>
+        <h4 onClick={() => setModal(!modal)}>
           {title[0]}
           <span onClick={goodEvent}>👍</span>
           {goodCount}
@@ -51,7 +52,7 @@ function App() {
       <div className="list">
         <h4>{title[2]}</h4>
       </div>
-      <Modal></Modal>
+      {modal == true ? <Modal /> : null}
     </div>
   );
 }

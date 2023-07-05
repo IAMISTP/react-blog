@@ -77,9 +77,10 @@ function App() {
       <input onChange={(e) => setInputValue(e.target.value)} />
       <button
         onClick={() => {
-          console.log(titles);
-          let copy = [inputValue, ...titles];
-          setTitles(copy);
+          if (inputValue !== "") {
+            let copy = [inputValue, ...titles];
+            setTitles(copy);
+          }
         }}
       >
         추가

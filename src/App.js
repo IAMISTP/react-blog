@@ -2,6 +2,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import React from "react";
 
 function Modal(props) {
   return (
@@ -14,6 +15,30 @@ function Modal(props) {
   );
 }
 
+class Modal3 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "kim",
+      age: 20,
+    };
+  }
+  render() {
+    return (
+      <div>
+        {/* {this.props} */}
+        안녕{this.state.name}
+        <button
+          onClick={() => {
+            this.setState({ name: "park" });
+          }}
+        >
+          변경
+        </button>
+      </div>
+    );
+  }
+}
 function App() {
   let [titles, setTitles] = useState([
     "남자코트추천",
@@ -89,6 +114,7 @@ function App() {
       {modal ? (
         <Modal titles={titles} title={title} changeTitle={changeTitle} />
       ) : null}
+      <Modal3></Modal3>
     </div>
   );
 }

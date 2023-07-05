@@ -23,7 +23,7 @@ function App() {
   let [goodCount, setGoodCount] = useState([0, 1, 2]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
-
+  let [inputValue, setInputValue] = useState("");
   function changeTitle() {
     let copyTitle = [...titles];
     copyTitle[0] = "여자코트추천";
@@ -52,7 +52,8 @@ function App() {
             >
               {x}
               <span
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   let copy = [...goodCount];
                   copy[i] = copy[i] + 1;
                   setGoodCount(copy);
@@ -62,9 +63,27 @@ function App() {
               </span>
               {goodCount[i]}
             </h4>
+            <button
+              onClick={() => {
+                let copy = [...titles].filter((x) => x !== titles[i]);
+                setTitles(copy);
+              }}
+            >
+              삭제
+            </button>
           </div>
         );
       })}
+      <input onChange={(e) => setInputValue(e.target.value)} />
+      <button
+        onClick={() => {
+          console.log(titles);
+          let copy = [inputValue, ...titles];
+          setTitles(copy);
+        }}
+      >
+        추가
+      </button>
       {modal ? (
         <Modal titles={titles} title={title} changeTitle={changeTitle} />
       ) : null}

@@ -58,6 +58,7 @@ function App() {
           </div>
         );
       })}
+      {modal ? <Modal /> : null}
     </div>
   );
 }

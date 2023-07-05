@@ -5,8 +5,8 @@ import { useState } from "react";
 
 function Modal(props) {
   return (
-    <div className="modal" style={{ backgroundColor: props.color }}>
-      <h4>{props.titles[0]}</h4>
+    <div className="modal">
+      <h4>{props.titles[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
       <button onClick={props.changeTitle}>글수정</button>
@@ -22,6 +22,7 @@ function App() {
   ]);
   let [goodCount, setGoodCount] = useState([0, 1, 2]);
   let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(0);
 
   function changeTitle() {
     let copyTitle = [...titles];
@@ -43,7 +44,12 @@ function App() {
       {titles.map((x, i) => {
         return (
           <div className="list" key={i}>
-            <h4 onClick={() => setModal(!modal)}>
+            <h4
+              onClick={() => {
+                setModal(!modal);
+                setTitle(i);
+              }}
+            >
               {x}
               <span
                 onClick={() => {
@@ -60,7 +66,7 @@ function App() {
         );
       })}
       {modal ? (
-        <Modal titles={titles} color={"skyblue"} changeTitle={changeTitle} />
+        <Modal titles={titles} title={title} changeTitle={changeTitle} />
       ) : null}
     </div>
   );

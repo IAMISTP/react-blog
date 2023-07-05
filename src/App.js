@@ -20,7 +20,7 @@ function App() {
     "강남우동맛집",
     "파이썬독학",
   ]);
-  let [goodCount, setGoodCount] = useState([0, 1, 2]);
+  let [goodCount, setGoodCount] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
   let [inputValue, setInputValue] = useState("");
@@ -80,6 +80,7 @@ function App() {
           if (inputValue !== "") {
             let copy = [inputValue, ...titles];
             setTitles(copy);
+            setGoodCount([0, ...goodCount]);
           }
         }}
       >
